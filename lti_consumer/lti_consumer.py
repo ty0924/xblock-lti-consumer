@@ -368,7 +368,7 @@ class LtiConsumerXBlock(StudioEditableXBlockMixin, XBlock):
     has_score = Boolean(
         display_name=_("Scored"),
         help=_("Select True if this component will receive a numerical score from the external LTI system."),
-        default=False,
+        default=True,
         scope=Scope.settings
     )
     weight = Float(
@@ -378,7 +378,7 @@ class LtiConsumerXBlock(StudioEditableXBlockMixin, XBlock):
             "The default value is 1.0.  "
             "This setting is only used when Scored is set to True."
         ),
-        default=1.0,
+        default=100.0,
         scope=Scope.settings,
         values={"min": 0},
     )
@@ -415,14 +415,14 @@ class LtiConsumerXBlock(StudioEditableXBlockMixin, XBlock):
         display_name=_("Request user's username"),
         # Translators: This is used to request the user's username for a third party service.
         help=_("Select True to request the user's username."),
-        default=False,
+        default=True,
         scope=Scope.settings
     )
     ask_to_send_email = Boolean(
         display_name=_("Request user's email"),
         # Translators: This is used to request the user's email for a third party service.
         help=_("Select True to request the user's email address."),
-        default=False,
+        default=True,
         scope=Scope.settings
     )
     enable_processors = Boolean(
@@ -515,6 +515,8 @@ class LtiConsumerXBlock(StudioEditableXBlockMixin, XBlock):
         editable_fields = self.editable_field_names
         # update the editable fields if this XBlock is configured to not to allow the
         # editing of 'ask_to_send_username' and 'ask_to_send_email'.
+
+        """
         config_service = self.runtime.service(self, 'lti-configuration')
         if config_service:
             is_already_sharing_learner_info = self.ask_to_send_email or self.ask_to_send_username
@@ -527,6 +529,7 @@ class LtiConsumerXBlock(StudioEditableXBlockMixin, XBlock):
                     for field in self.editable_field_names
                     if field not in ('ask_to_send_username', 'ask_to_send_email')
                 )
+        """
 
         return editable_fields
 
