@@ -281,7 +281,7 @@ class LtiConsumerXBlock(StudioEditableXBlockMixin, XBlock):
             docs_anchor_open=DOCS_ANCHOR_TAG_OPEN,
             anchor_close="</a>"
         ),
-        default='',
+        default='onedx',
         scope=Scope.settings
     )
     launch_url = String(
@@ -294,7 +294,7 @@ class LtiConsumerXBlock(StudioEditableXBlockMixin, XBlock):
             docs_anchor_open=DOCS_ANCHOR_TAG_OPEN,
             anchor_close="</a>"
         ),
-        default='',
+        default='http://oncoder.iptime.org:8282/api/ext/',
         scope=Scope.settings
     )
     custom_parameters = List(
@@ -317,7 +317,7 @@ class LtiConsumerXBlock(StudioEditableXBlockMixin, XBlock):
             "Select New Window if you want the LTI content to open in a new browser window. "
             "This setting is only used when Hide External Tool is set to False."
         ),
-        default=LaunchTarget.IFRAME.value,
+        default=LaunchTarget.NEW_WINDOW.value,
         scope=Scope.settings,
         values=[
             {"display_name": LaunchTarget.IFRAME.display_name, "value": LaunchTarget.IFRAME.value},
